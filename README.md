@@ -1,51 +1,31 @@
-# Uganda Food Price Prediction
+# East Africa Food Price Prediction
 
-A machine learning project that predicts next month's Maize price at Owino market, Kampala, using 16 years of historical WFP data.
+An end-to-end machine learning project predicting food prices for traders, NGOs, and agricultural planners in East Africa.
 
-Built as a learning project to understand core ML concepts hands-on.
+Built as a hands-on learning project — raw data to trained model to production API.
 
-## What it does
-
-Trains a Random Forest model on historical price data to predict the next month's Maize price (UGX/kg) at Owino market, Kampala.
-
-**Results:** Test MAE of 193 UGX/kg (~20% of average price) on 2020–2022 data. The test period covers COVID-era price shocks which the model had never seen during training — a realistic challenge for any classical ML model.
-
-## Project structure
+## Structure
 
 ```
-01_exploration.ipynb          # Data exploration and seasonality analysis
-02_feature_engineering.ipynb  # Feature engineering — lag, rolling mean, calendar features
-03_model_training.ipynb       # Model training, evaluation, and visualization
-data/maize_owino_features.csv # Engineered dataset
-wfp_food_prices_uga.csv       # Raw WFP Uganda food prices data
-price_prediction_results.png  # Predicted vs actual chart + feature importance
+food_prices_model/    # Data exploration, feature engineering, model training
+food_prices_api/      # FastAPI service + Streamlit demo (coming soon)
 ```
 
-## ML concepts covered
+## food_prices_model
 
-- Supervised regression
-- Feature engineering (lag features, rolling means, calendar features)
-- Time-based train/test split
-- Random Forest ensemble model
-- MAE evaluation
-- Overfitting
-- Feature importance
+Trains a Random Forest model on 16 years of WFP Uganda food price data to predict next month's Maize price at Owino market, Kampala.
 
-## Setup
+**Results:** Test MAE of 193 UGX/kg (~20% of average price) on 2020–2022 COVID-era data.
 
-```bash
-uv sync
-jupyter lab
-```
+See [food_prices_model/](food_prices_model/) for full details.
 
-Then run the notebooks in order: `01` → `02` → `03`.
+## food_prices_api
 
-## Data
+FastAPI service wrapping the trained model, with a Streamlit demo UI.
 
-Source: [WFP Food Prices](https://data.humdata.org/dataset/wfp-food-prices-for-uganda) — 25,526 rows of food price observations across Uganda markets from 2006 to 2022.
+Coming soon.
 
-## Key findings
+## Goal
 
-- `price_lag_1` (last month's price) is the strongest predictor
-- Seasonality (harvest cycles) is a real signal the model picks up
-- COVID-era disruptions (2020–2022) are hard to predict from pre-COVID training data
+A production API useful to traders, NGOs, and agricultural planners across East Africa.
+Roadmap: expand to more commodities, more markets, and additional features (rainfall, fuel prices, conflict data).
