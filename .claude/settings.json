@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:acleddata.com)",
+      "WebFetch(domain:gpm.nasa.gov)",
+      "WebSearch"
+    ]
+  }
+}
